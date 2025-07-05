@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - D-light Motors</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url("dodge"); /* Replace 'dodge' with your background image URL */
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -220px;
+      width: 220px;
+      height: 100vh;
+      background-color: #111;
+      color: white;
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px 20px;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #575757;
+    }
+
+    /* Toggle button */
+    .menu-icon {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      background: #111;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      font-size: 26px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1100;
+      transition: background-color 0.3s;
+    }
+
+    .menu-icon:hover {
+      background-color: #444;
+    }
+
+    /* Header */
+    .headertext {
+      max-width: 900px;
+      margin: 50px auto 20px auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #f1f1f1;
+      padding: 20px 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      position: relative;
+      z-index: 1;
+    }
+
+    .headertext h2 {
+      margin-bottom: 10px;
+      font-size: 2.5rem;
+    }
+
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: 20px auto 50px auto;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .owners {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+    }
+
+    .owner {
+      flex: 1 1 45%;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .owner img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .owner img:hover {
+      transform: scale(1.05);
+    }
+
+    .owner h2 {
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .owner p {
+      color: #666;
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+
+    /* Footer */
+    .footer {
+      max-width: 900px;
+      margin: 0 auto 50px auto;
+      background-color: rgba(0,0,0,0.6);
+      color: #f1f1f1;
+      padding: 15px 30px;
+      border-radius: 10px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .owners {
+        flex-direction: column;
+      }
+
+      .owner {
+        flex: 1 1 100%;
+      }
+
+      .headertext {
+        margin: 70px 15px 20px 15px;
+        padding: 15px 20px;
+      }
+
+      .container, .footer {
+        margin: 20px 15px 40px 15px;
+      }
+
+      .owner img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="service.html">Service</a>
+    <a href="bill.html">Bill</a>
+  </div>
+
+  <!-- Toggle button -->
+  <button class="menu-icon" onclick="toggleSidebar()">☰</button>
+
+  <!-- Header text -->
+  <div class="headertext">
+    <h2>Jay Maa Khodal</h2>
+  </div>
+
+  <!-- Main content container -->
+  <div class="container">
+    <h1>D-Light Motors</h1>
+    <div class="owners">
+      <div class="owner">
+        <img src="kalpesh" alt="Kalpeshbhai Vanaliya" />
+        <h2>Kalpeshbhai Vanaliya</h2>
+        <p>7600382738</p>
+      </div>
+      <div class="owner">
+        <img src="rutvik" alt="Rutvikbhai Vanaliya" />
+        <h2>Rutvikbhai Vanaliya</h2>
+        <p>7383898935</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>"We expertly repair all types of cars to your complete satisfaction."</p>
+    <p>Shop No.10 Vishwas City-7 opp.Water Tank, Gota Village, Amdavad.</p>
+    <p>Open 9:00 AM To 9:00 PM</p>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>D-light Motors</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: whitesmoke;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      height: 100vh;
+      width: 220px;
+      position: fixed;
+      top: 0;
+      left: -220px;
+      background-color: #111;
+      color: white;
+      padding-top: 60px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 12px 20px;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #575757;
+    }
+
+    /* Toggle button */
+    .menu-icon {
+      font-size: 26px;
+      cursor: pointer;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      background: #111;
+      color: white;
+      border: none;
+      z-index: 1100;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+
+    /* Header text */
+    .headertext {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      padding: 2%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #f1f1f1;
+      text-align: center;
+      z-index: 900;
+    }
+
+    .headertext h1 {
+      font-size: 2rem;
+    }
+
+    .headertext p {
+      color: #ddd;
+      font-size: 1rem;
+    }
+
+    /* Card grid */
+    .carcontainer {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 8rem 2rem 2rem 2rem;
+    }
+
+    .card {
+      background-color: aliceblue;
+      border-radius: 5%;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .card h3 {
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #f1f1f1;
+      font-weight: bold;
+      font-size: large;
+      padding: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .footer:hover {
+      transform: translateY(-7px);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .headertext {
+        padding: 1rem;
+      }
+
+      .carcontainer {
+        padding-top: 10rem;
+      }
+
+      .menu-icon {
+        top: 10px;
+        left: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar Navigation -->
+  <div class="sidebar" id="sidebar">
+
+    <a href="about.html">About</a>
+     <a href="bill.html">Bill</a>
+    
+  
+  </div>
+
+  <!-- Toggle Button -->
+  <button class="menu-icon" onclick="toggleSidebar()">☰</button>
+
+  <!-- Header -->
+  <div class="headertext">
+    <h1>D-light Motors</h1>
+    <p>Welcome to the platform where you can buy & repair your elite vehicle</p>
+  </div>
+
+  <!-- Main Card Section -->
+  <section class="carcontainer">
+    <div class="card">
+      <img src="genral" alt="General Service">
+      <div class="data">
+        <h3>General Service</h3>
+      </div>
+    </div>
+    <div class="card">
+      <img src="engine" alt="Engine">
+      <div class="data">
+        <h3>Engine & Gearbox Fitting</h3>
+      </div>
+    </div>
+    <div class="card">
+      <img src="ac" alt="AC">
+      <div class="data">
+        <h3>AC Repairing</h3>
+      </div>
+    </div>
+    <div class="card">
+      <img src="pick" alt="Pick">
+      <div class="data">
+        <h3>Pick Up & Drop Service</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="footer">
+    <h4>These services are provided by D-light Motors</h4>
+  </div>
+  <p style="text-align: center; font-size: large;">Thank you!</p>
+
+  <!-- Sidebar Toggle Script -->
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('active');
+    }
+  </script>
+
+</body>
+</html>

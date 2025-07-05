@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>D-Lite Motors - Garage Billing</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h2, h3 {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+    }
+    .item {
+      display: flex;
+      gap: 10px;
+    }
+    .item input {
+      flex: 1;
+    }
+    #itemsList {
+      margin-bottom: 10px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>D-Lite Motors</h2>
+  <h3>Garage Billing App</h3>
+
+  <input type="text" id="clientName" placeholder="Client Name" required>
+  <input type="text" id="whatsapp" placeholder="WhatsApp Number (without +91)" required>
+
+  <div id="itemsList">
+    <div class="item">
+      <input type="text" placeholder="Item Repaired" class="itemName">
+      <input type="number" placeholder="Cost" class="itemCost">
+    </div>
+  </div>
+  <button onclick="addItem()">➕ Add More Item</button>
+
+  <button onclick="generateBill()">📄 Generate & Send Bill</button>
+
+  <!-- Hidden link used to click WhatsApp -->
+  <a id="whatsappLink" style="display:none" target="_blank"></a>
+
+  <script>
+    let billNumber = localStorage.getItem("billNo") ? parseInt(localStorage.getItem("billNo")) : 1;
+
+    function addItem() {
+      const div = document.createElement("div");
+      div.className = "item";
+      div.innerHTML = `
+        <input type="text" placeholder="Item Repaired" class="itemName">
+        <input type="number" placeholder="Cost" class="itemCost">
+      `;
+      document.getElementById("itemsList").appendChild(div);
+    }
+
+    function generateBill() {
+      const name = document.getElementById("clientName").value.trim();
+      const phone = document.getElementById("whatsapp").value.trim();
+      if (!name || !phone) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+      if (phone.length !== 10 || isNaN(phone)) {
+        alert("Enter a valid 10-digit WhatsApp number.");
+        return;
+      }
+
+      const date = new Date().toLocaleDateString();
+      const items = document.querySelectorAll(".item");
+      let billText = `🛠️ *D-Lite Motors - Garage Bill*\n📄 Bill No: ${billNumber}\n📅 Date: ${date}\n👤 Client: ${name}\n📞 Mobile: ${phone}\n\n🔧 *Repairs:*\n`;
+      let total = 0;
+
+      items.forEach((item, i) => {
+        const itemName = item.querySelector(".itemName").value.trim();
+        const itemCost = parseFloat(item.querySelector(".itemCost").value.trim());
+        if (itemName && !isNaN(itemCost)) {
+          billText += `${i + 1}. ${itemName} - ₹${itemCost}\n`;
+          total += itemCost;
+        }
+      });
+
+      billText += `\n💰 *Total: ₹${total}*\n\n🙏 Thank you for visiting D-Lite Motors!`;
+
+      const encodedMsg = encodeURIComponent(billText);
+
+      // ✅ WORKING WhatsApp link for ANY unsaved number
+      const finalWhatsAppLink = `https://api.whatsapp.com/send?phone=91${phone}&text=${encodedMsg}`;
+
+      // Set the hidden link and click it
+      const link = document.getElementById("whatsappLink");
+      link.href = finalWhatsAppLink;
+      link.click(); // triggers WhatsApp
+
+      // Save bill file
+      const blob = new Blob([billText], { type: "text/plain" });
+      const saveLink = document.createElement("a");
+      saveLink.href = URL.createObjectURL(blob);
+      saveLink.download = `D-Lite_Motors_Bill_${billNumber}_${phone}.txt`;
+      saveLink.click();
+
+      // Update bill number
+      billNumber++;
+      localStorage.setItem("billNo", billNumber);
+    }
+  </script>
+
+</body>
+</html>

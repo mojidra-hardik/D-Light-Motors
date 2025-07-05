@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>D-light Motors</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            font-family: sans-serif;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            background-color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: black;
+        }
+
+       .menu-icon {
+        font-size: 26px;
+        cursor: pointer;
+        display: block; /* Always show the menu icon */
+        }
+
+        /* Sidebar */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 999;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.3s;
+            padding-top: 60px;
+        }
+
+        .sidebar a {
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.2s;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+        }
+
+        .main {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .main h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .main h3 {
+            font-weight: normal;
+            color: #333;
+        }
+
+        .search {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .search input {
+            padding: 0.5rem;
+            font-size: 1rem;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .carContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .card {
+            background-color: aliceblue;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .data {
+            padding: 1rem;
+        }
+
+        .data h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .dimensions, .price {
+            color: grey;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            .menu-icon {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="navbar">
+            <p class="logo">D-light motors</p>
+            <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+        </div>
+    </div>
+
+    <!-- Side Navigation -->
+    <div class="sidebar" id="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">&times;</a>
+        <a href="service.html">Services</a>
+        <a href="about.html">About Us</a>
+        <a href="bill.html">Bill</a>
+    </div>
+
+    <div class="main">
+        <h1>EXCELLENT CAR FOR SALE</h1>
+        <h3>A destination where you can find your dream & elite Car</h3>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search">
+        <input type="text" id="searchInput" oninput="searchCars()" placeholder="Search cars...">
+    </div>
+
+    <!-- Car Cards -->
+    <section class="carContainer" id="carContainer">
+        <div class="card" data-name="scorpio">
+            <img src="scorpio" alt="scorpio">
+            <div class="data">
+                <h3>2025 Mahindra Scorpio Classic</h3>
+                <p class="dimensions">Dimensions: 4,456mm x 1,820mm x 1,995mm</p>
+                <p class="price">₹16,40,000</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="i20">
+            <img src="i2o" alt="i20">
+            <div class="data">
+                <h3>2022 Hyundai i20</h3>
+                <p class="dimensions">Dimensions: 3,995mm x 1,775mm x 1,505mm</p>
+                <p class="price">₹6,00,000</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="ecosport">
+            <img src="ecosport" alt="ecosport">
+            <div class="data">
+                <h3>2018 Ford EcoSport</h3>
+                <p class="dimensions">Dimensions: 3,998mm x 1,765mm x 1,647mm</p>
+                <p class="price">₹4,40,000</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="verna">
+            <img src="verna" alt="verna">
+            <div class="data">
+                <h3>2023 Hyundai Verna</h3>
+                <p class="dimensions">Dimensions: 4,535mm x 1,765mm x 1,475mm</p>
+                <p class="price">₹7,95,000</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="wagnor">
+            <img src="wagnor" alt="Wagnor">
+            <div class="data">
+                <h3>2018 Suzuki Wagnor</h3>
+                <p class="dimensions">Dimensions: 3,655mm x 1,620mm x 1,675mm</p>
+                <p class="price">₹2,20,000</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="dzire">
+            <img src="dzire" alt="Dzire">
+            <div class="data">
+                <h3>2023 Suzuki Dzire</h3>
+                <p class="dimensions">Dimensions: 3,995mm x 1,735mm x 1,515mm</p>
+                <p class="price">₹8,00,000</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="altroz">
+            <img src="ltroz" alt="Altroz">
+            <div class="data">
+                <h3>2022 Tata Altroz</h3>
+                <p class="dimensions">Dimensions: 3,990mm x 1,755mm x 1,523mm</p>
+                <p class="price">₹5,75,000</p>
+            </div>
+        </div>
+
+        <div class="card" data-name="ciaz">
+            <img src="ciaz" alt="ciaz">
+            <div class="data">
+                <h3>2023 Suzuki Ciaz</h3>
+                <p class="dimensions">Dimensions: 4,490mm x 1,730mm x 1,485mm</p>
+                <p class="price">₹7,00,000</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            sidebar.style.width = (sidebar.style.width === "250px") ? "0" : "250px";
+        }
+
+        function searchCars() {
+            const input = document.getElementById("searchInput").value.toLowerCase();
+            const cards = document.querySelectorAll("#carContainer .card");
+            cards.forEach(card => {
+                const name = card.getAttribute("data-name");
+                card.style.display = name.includes(input) ? "block" : "none";
+            });
+        }
+    </script>
+
+</body>
+</html>
